@@ -1,68 +1,65 @@
-<svelte:head>
-    <link href='static\fonts\CARDC___.TTF' rel='stylesheet'>
-</svelte:head>
-
+<!-- // Scripts -->
 <script>
-
-    export let rank = 4;
-    export let suit = 'HRT';
-
+	export let rank = 0;
+	export let suit = 'SUT';
 </script>
 
-
-<main>
-    <div id='card'>
-        <span class='top left rank'>{rank}</span>
-        <span class='bot right rank'>{rank}</span>
-        <span class='suit'>{suit}</span>
-    </div>
-
-</main>
+<svelte:head>
+	<link href="static\fonts\CARDC___.TTF" rel="stylesheet" />
+</svelte:head>
 
 
+
+<!-- // Structure -->
+
+<div id="card">
+	<span class="rank top">{rank}</span>
+	<span class="suit">{suit}</span>
+	<span class="rank bot">{rank}</span>
+	<!-- <span class='icon'>{suit}</span> -->
+</div>
+
+<!-- //  Style -->
 <style>
-    @font-face {
-        font-family: 'Cardio';
-        font-style: normal;
-        font-weight: 400;
-        src: url('static\fonts\CARDC___.TTF'), format('ttf');
-    }
+	@font-face {
+		font-family: 'Cardio';
+		font-style: normal;
+		font-weight: 400;
+		src: url('static\fonts\CARDC___.TTF'), format('ttf');
+	}
 
-    #card {
-        display: flex;
-        position: relative;
-        width: 8rem;
-        aspect-ratio: 1/1.4;
+	#card {
+		display: grid;
+		grid-template-columns: 1fr 2fr 1fr;
+		grid-template-rows: 1fr 1fr;
+		grid-template-areas:
+			'rankTop suit blank'
+			'blank suit rankBot';
+		width: 6rem;
+		aspect-ratio: 1/1.4;
 
-        background-color: whitesmoke;
-        border-radius: 1rem;
-        font-family: 'Cardio';
-        font-size: 2em;
-        --label-padding: 0.25rem;
-    }
+		background-color: whitesmoke;
+		border-radius: 10px;
+		font-family: 'Cardio';
+		font-size: 2em;
+		--label-padding: 0.25rem;
+	}
 
     .rank {
-        position: absolute;
+        border: solid blue 1px;
     }
 
-    .suit {
-        position: relative;
-        margin: auto;
-    }
+	.rank.top {
+		grid-area: rankTop;
+	}
 
-    .top {
-        top: var(--label-padding);
-    }
+	.rank.bot {
+		grid-area: rankBot;
+	}
 
-    .bot {
-        bottom: var(--label-padding);
-    }
+	.suit {
+		border: solid red 1px;
+		grid-area: suit;
+	}
 
-    .left {
-        left: var(--label-padding);
-    }
-
-    .right {
-        right: var(--label-padding);
-    }
 </style>
